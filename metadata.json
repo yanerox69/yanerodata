@@ -1,0 +1,5 @@
+{
+  "name": "eBay Best-Seller Finder",
+  "description": "An application to find the top 100 best-selling products on eBay based on specific criteria (last 3 months, under $100, specific dimensions) and export the list to an Excel file.",
+  "requestFramePermissions": []
+}
