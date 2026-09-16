@@ -84,6 +84,36 @@ npm run preview -- --host 0.0.0.0
 docker compose -f deploy/docker-compose.yml up --build
 ```
 
+## Option B: Fireworks AI (no GPU instance to manage, no credit card)
+
+If you can't get an AMD Developer Cloud droplet approved (it requires a
+verified payment method even with free credits), you can still run
+DocuSwarm on real AMD hardware without provisioning anything yourself:
+[Fireworks AI](https://fireworks.ai) has a multi-year partnership with AMD
+and serves inference on AMD Instinct GPUs, exposed through the same
+OpenAI-compatible `/v1/chat/completions` API our backend already targets —
+so no code changes are needed, only env vars.
+
+1. Log in to the [AMD AI Developer Program](https://www.amd.com/en/developer/ai-dev-program.html)
+   portal → **Member Perks** → **Request Cloud Credits**.
+2. Fill the form (affiliation, intended use, a public profile link like
+   your GitHub). This issues **$50 in Fireworks AI credits, no credit card
+   required** — approval takes 2-3 business days, then AMD emails a coupon
+   code.
+3. Go to [fireworks.ai](https://fireworks.ai), create an account, redeem
+   the coupon code, and generate an API key from your Fireworks dashboard.
+4. Set these in `backend/.env` (see `Option B` in `.env.example`):
+   ```
+   LLM_PROVIDER=vllm
+   LLM_BASE_URL=https://api.fireworks.ai/inference/v1
+   LLM_MODEL=accounts/fireworks/models/llama-v3p1-8b-instruct
+   LLM_API_KEY=<your Fireworks API key>
+   ```
+5. Run the backend and frontend locally as in the Quickstart section of
+   the main README — no SSH, no Docker, no ROCm setup required. The
+   dashboard's "Tokens/seg" reads Fireworks' real `usage` field, so it's
+   genuine AMD Instinct throughput.
+
 ## Tuning for throughput (the hackathon's "high-performance" ask)
 
 - `--gpu-memory-utilization` and `--max-num-seqs` in
