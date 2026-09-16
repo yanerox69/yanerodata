@@ -5,15 +5,39 @@ same OpenAI-compatible API whether it's running on a laptop CPU or an
 MI300X, so the backend and frontend never change — only `LLM_BASE_URL`
 does.
 
-## 1. Provision a GPU instance
+## 0. Get access to a GPU instance
 
-Sign up / log in at the AMD Developer Program and launch a Developer Cloud
-instance with ROCm preinstalled (an MI300X or MI250 instance works).
-Confirm the driver with:
+1. Join the **AMD Developer Program** (the hackathon requires this — the
+   sign-up link is on the [ACT III hackathon page](https://lablab.ai/ai-hackathons/amd-developer-hackathon-act-iii)).
+   Hackathon participants typically get free/discounted GPU credits; check
+   the hackathon page or your welcome email for a credit/coupon code.
+2. From the AMD Developer Program dashboard, find **AMD Developer Cloud**
+   and launch a new GPU instance (MI300X or MI250), choosing a ROCm-preinstalled
+   image if offered. Upload/select an SSH key during creation.
+3. Once it's running, note its public IP and SSH in:
+   ```bash
+   ssh <user>@<instance-ip>
+   ```
+4. Install Docker if it isn't already there (most ROCm images ship with it):
+   ```bash
+   docker --version || curl -fsSL https://get.docker.com | sh
+   ```
+5. Clone this repo on the instance:
+   ```bash
+   git clone https://github.com/yanerox69/yanerodata.git
+   cd yanerodata
+   git checkout claude/amd-hackathon-act-iii-5b0pcq
+   ```
+
+## 1. Confirm the GPU is visible
 
 ```bash
 rocm-smi
 ```
+
+If this errors, the instance's ROCm driver isn't set up correctly — check
+the instance's documentation/image before continuing; nothing below will
+work without it.
 
 ## 2. Serve a model with vLLM (ROCm build)
 
