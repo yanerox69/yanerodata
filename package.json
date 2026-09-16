@@ -1,5 +1,5 @@
 {
-  "name": "ebay-best-seller-finder",
+  "name": "docuswarm",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@google/genai": "^1.29.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

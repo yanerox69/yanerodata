@@ -1,0 +1,13 @@
+# vLLM serving a model on AMD Instinct GPUs via ROCm.
+# Base image is AMD's official ROCm + vLLM build; swap the tag for the
+# version matching your AMD Developer Cloud instance's ROCm driver.
+FROM rocm/vllm:latest
+
+ARG MODEL=meta-llama/Llama-3.1-8B-Instruct
+ENV MODEL=${MODEL}
+
+EXPOSE 8000
+
+# --host 0.0.0.0 so the backend container can reach it; tune
+# --gpu-memory-utilization / --max-num-seqs for the swarm's concurrency.
+CMD ["sh", "-c", "vllm serve $MODEL --host 0.0.0.0 --port 8000 --gpu-memory-utilization 0.90"]

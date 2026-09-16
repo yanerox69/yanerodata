@@ -5,10 +5,11 @@ the interface vLLM serves when it runs a model on AMD Instinct GPUs via
 ROCm (`vllm serve <model> --host 0.0.0.0`). Swapping LLM_BASE_URL is all
 that's needed to move from a laptop to AMD Developer Cloud.
 """
+import asyncio
 import json
 import random
 import time
-from typing import List, Dict
+from typing import Any, Dict, List, Tuple
 
 import httpx
 
@@ -23,6 +24,40 @@ def chat(messages: List[Dict[str, str]]) -> str:
     if settings.llm_provider == "mock":
         return _mock_chat(messages)
     return _vllm_chat(messages)
+
+
+async def achat(messages: List[Dict[str, str]]) -> Tuple[str, Dict[str, Any]]:
+    """Async chat call returning (content, usage). Used by the document swarm
+    so many requests can be in flight concurrently against the same vLLM
+    server, which is what lets AMD Instinct GPUs' continuous batching pay
+    off — throughput scales with concurrency, not just raw FLOPs."""
+    if settings.llm_provider == "mock":
+        return await _mock_achat(messages)
+    return await _vllm_achat(messages)
+
+
+async def _vllm_achat(messages: List[Dict[str, str]]) -> Tuple[str, Dict[str, Any]]:
+    url = f"{settings.llm_base_url.rstrip('/')}/chat/completions"
+    payload = {
+        "model": settings.llm_model,
+        "messages": messages,
+        "temperature": 0.2,
+        "max_tokens": 512,
+    }
+    headers = {"Authorization": f"Bearer {settings.llm_api_key}"}
+    async with httpx.AsyncClient(timeout=settings.request_timeout_s) as client:
+        try:
+            resp = await client.post(url, json=payload, headers=headers)
+            resp.raise_for_status()
+        except httpx.HTTPError as exc:
+            raise LLMError(f"Could not reach LLM server at {url}: {exc}") from exc
+    data = resp.json()
+    try:
+        content = data["choices"][0]["message"]["content"]
+    except (KeyError, IndexError) as exc:
+        raise LLMError(f"Unexpected LLM response shape: {data}") from exc
+    usage = data.get("usage", {})
+    return content, usage
 
 
 def _vllm_chat(messages: List[Dict[str, str]]) -> str:
@@ -86,3 +121,45 @@ def _mock_chat(messages: List[Dict[str, str]]) -> str:
             }
         ],
     })
+
+
+_RISK_WORDS = {
+    "high": ["terminate", "penalty", "indemnif", "liquidated damages", "exclusiv", "auto-renew"],
+    "medium": ["confidential", "non-compete", "governing law", "arbitration"],
+}
+
+
+async def _mock_achat(messages: List[Dict[str, str]]) -> Tuple[str, Dict[str, Any]]:
+    """Fakes a document-analysis LLM call with randomized-but-plausible
+    latency so the swarm dashboard has something realistic to show without
+    needing a GPU. Risk level is derived from simple keyword matches so
+    different sample documents produce different, sensible-looking output."""
+    text = messages[-1]["content"] if messages else ""
+    await asyncio.sleep(random.uniform(0.6, 1.8))
+
+    lowered = text.lower()
+    risk = "low"
+    flags = []
+    for level, words in _RISK_WORDS.items():
+        for w in words:
+            if w in lowered:
+                risk = level
+                flags.append(f"Contains '{w}' language")
+    if not flags:
+        flags = ["No obvious red flags detected in mock analysis."]
+
+    content = json.dumps({
+        "risk_level": risk,
+        "summary": (text[:180] + "...") if len(text) > 180 else text or "Empty document.",
+        "red_flags": flags[:5],
+        "key_dates": [],
+        "parties": [],
+    })
+    prompt_tokens = max(len(text) // 4, 1)
+    completion_tokens = max(len(content) // 4, 1)
+    usage = {
+        "prompt_tokens": prompt_tokens,
+        "completion_tokens": completion_tokens,
+        "total_tokens": prompt_tokens + completion_tokens,
+    }
+    return content, usage

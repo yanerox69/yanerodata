@@ -1,0 +1,48 @@
+version: "3.8"
+
+# Full DocuSwarm stack: vLLM serving a model on AMD Instinct GPUs (ROCm),
+# the FastAPI swarm backend, and the static frontend behind nginx.
+#
+# On an AMD Developer Cloud instance, run with:
+#   docker compose -f deploy/docker-compose.yml up --build
+#
+# Locally without a GPU, skip the vllm service and run the backend with
+# LLM_PROVIDER=mock (see backend/.env.example) instead.
+services:
+  vllm:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.vllm-rocm
+      args:
+        MODEL: meta-llama/Llama-3.1-8B-Instruct
+    devices:
+      - /dev/kfd
+      - /dev/dri
+    group_add:
+      - video
+    security_opt:
+      - seccomp=unconfined
+    ports:
+      - "8000:8000"
+
+  backend:
+    build:
+      context: ./backend
+    environment:
+      LLM_PROVIDER: vllm
+      LLM_BASE_URL: http://vllm:8000/v1
+      LLM_MODEL: meta-llama/Llama-3.1-8B-Instruct
+      CORS_ORIGINS: "*"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - vllm
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend.Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
