@@ -4,6 +4,22 @@
 
 Built for the [AMD Developer Hackathon: ACT III](https://lablab.ai/ai-hackathons/amd-developer-hackathon-act-iii) — *"AI agents and high-performance AI applications on AMD GPUs in the cloud."*
 
+## Status
+
+The app, swarm orchestration, and dashboard are fully built and tested
+end-to-end (see Tests below). Both AMD Developer Cloud and Fireworks AI
+(which serves inference on AMD Instinct GPUs) require a verified payment
+method to issue GPU/inference credits, even when usage is fully covered by
+the hackathon's free credits — a barrier we couldn't clear in time for this
+submission. This is precisely why the backend was built provider-agnostic
+from the start: `backend/app/llm.py` talks to any OpenAI-compatible
+endpoint, so connecting it to a live AMD-backed model (self-hosted vLLM or
+Fireworks) is a two-line env var change with zero code changes, documented
+in [`deploy/AMD_DEPLOYMENT.md`](deploy/AMD_DEPLOYMENT.md). The demo below
+runs on the included deterministic mock provider so the full flow —
+concurrent processing, live throughput dashboard, export — is fully
+demoable today.
+
 ## The problem
 
 Reviewing a stack of contracts, NDAs, or vendor agreements for risky clauses
