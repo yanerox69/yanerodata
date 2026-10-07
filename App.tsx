@@ -71,8 +71,8 @@ export default function App(): React.ReactElement {
             DocuSwarm
           </h1>
           <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
-            Sube varios contratos o documentos y un swarm de agentes los analiza en paralelo — riesgos, cláusulas
-            clave y fechas — mientras ves el throughput de la GPU en vivo.
+            Upload multiple contracts or documents and a swarm of agents analyzes them in parallel — risks, key
+            clauses, and dates — while you watch live GPU throughput.
           </p>
         </header>
 
@@ -82,7 +82,7 @@ export default function App(): React.ReactElement {
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-center gap-3 text-sm">
-                <span className="font-bold text-sky-400">Concurrencia</span>
+                <span className="font-bold text-sky-400">Concurrency</span>
                 <div className="flex gap-1">
                   {CONCURRENCY_OPTIONS.map((c) => (
                     <button
@@ -107,7 +107,7 @@ export default function App(): React.ReactElement {
                 className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 disabled:bg-sky-800 disabled:cursor-not-allowed transition-all duration-200"
               >
                 <ZapIcon className="mr-2 h-5 w-5" />
-                {isRunning ? 'Analizando swarm...' : `Analizar ${files.length || ''} documento${files.length === 1 ? '' : 's'}`}
+                {isRunning ? 'Running swarm...' : `Analyze ${files.length || ''} document${files.length === 1 ? '' : 's'}`}
               </button>
             </div>
           </div>
@@ -130,7 +130,7 @@ export default function App(): React.ReactElement {
         {orderedDocs.length > 0 && (
           <div className="mt-10 max-w-6xl mx-auto">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold">Resultados ({orderedDocs.length})</h2>
+              <h2 className="text-xl font-bold">Results ({orderedDocs.length})</h2>
               {hasResults && (
                 <div className="flex gap-2">
                   <a
@@ -160,7 +160,7 @@ export default function App(): React.ReactElement {
 
         {orderedDocs.length === 0 && !isRunning && (
           <div className="text-center py-16 text-gray-500">
-            <p>Sube documentos y presiona "Analizar" para lanzar el swarm.</p>
+            <p>Upload documents and press "Analyze" to launch the swarm.</p>
           </div>
         )}
       </main>

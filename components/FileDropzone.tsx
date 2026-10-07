@@ -45,8 +45,8 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({ files, onChange, dis
         } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
       >
         <UploadIcon className="h-8 w-8 mx-auto text-sky-400 mb-2" />
-        <p className="text-gray-300 font-medium">Suelta contratos/documentos aquí o haz clic para elegir</p>
-        <p className="text-gray-500 text-sm mt-1">PDF, DOCX o TXT — hasta 20 archivos</p>
+        <p className="text-gray-300 font-medium">Drop contracts/documents here or click to choose</p>
+        <p className="text-gray-500 text-sm mt-1">PDF, DOCX, or TXT — up to 20 files</p>
         <input
           ref={inputRef}
           type="file"

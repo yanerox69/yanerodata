@@ -13,10 +13,10 @@ export const MetricsBar: React.FC<{ metrics: SwarmMetrics | null; concurrency: n
   return (
     <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4 space-y-3">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-        <Stat icon={<CheckIcon className="h-5 w-5 text-emerald-400" />} label="Completados" value={`${completed}/${total}`} />
-        <Stat icon={<ZapIcon className="h-5 w-5 text-sky-400" />} label="Tokens/seg" value={metrics ? metrics.tokens_per_s.toFixed(1) : '0.0'} />
-        <Stat icon={<ClockIcon className="h-5 w-5 text-amber-400" />} label="Tiempo" value={metrics ? `${metrics.elapsed_s.toFixed(1)}s` : '0.0s'} />
-        <Stat icon={<ZapIcon className="h-5 w-5 text-indigo-400" />} label="Concurrencia GPU" value={`${concurrency}x`} />
+        <Stat icon={<CheckIcon className="h-5 w-5 text-emerald-400" />} label="Completed" value={`${completed}/${total}`} />
+        <Stat icon={<ZapIcon className="h-5 w-5 text-sky-400" />} label="Tokens/sec" value={metrics ? metrics.tokens_per_s.toFixed(1) : '0.0'} />
+        <Stat icon={<ClockIcon className="h-5 w-5 text-amber-400" />} label="Elapsed" value={metrics ? `${metrics.elapsed_s.toFixed(1)}s` : '0.0s'} />
+        <Stat icon={<ZapIcon className="h-5 w-5 text-indigo-400" />} label="GPU Concurrency" value={`${concurrency}x`} />
       </div>
       <div className="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
         <div

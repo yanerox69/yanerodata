@@ -11,9 +11,9 @@ const RISK_STYLES: Record<string, string> = {
 };
 
 const STATUS_LABEL: Record<string, string> = {
-  queued: 'En cola',
-  running: 'Analizando...',
-  done: 'Completo',
+  queued: 'Queued',
+  running: 'Analyzing...',
+  done: 'Done',
   error: 'Error',
 };
 
