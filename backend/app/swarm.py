@@ -8,6 +8,7 @@ requests queuing one-by-one behind each other.
 """
 import asyncio
 import json
+import re
 import time
 from dataclasses import dataclass
 from typing import AsyncIterator, List
@@ -89,7 +90,9 @@ async def analyze_swarm(documents: List[DocInput], concurrency: int = 4) -> Asyn
 
 
 def _parse_analysis(raw: str) -> DocumentAnalysis:
-    raw = raw.strip()
+    # Strip a leading <think>...</think> reasoning block some models emit,
+    # in case chat_template_kwargs.enable_thinking wasn't honored.
+    raw = re.sub(r"<think>.*?</think>", "", raw, flags=re.DOTALL).strip()
     start, end = raw.find("{"), raw.rfind("}")
     if start == -1 or end == -1:
         return DocumentAnalysis(summary=raw[:300])

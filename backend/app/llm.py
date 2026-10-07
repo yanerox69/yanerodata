@@ -42,7 +42,13 @@ async def _vllm_achat(messages: List[Dict[str, str]]) -> Tuple[str, Dict[str, An
         "model": settings.llm_model,
         "messages": messages,
         "temperature": 0.2,
-        "max_tokens": 512,
+        "max_tokens": 1024,
+        # Qwen3 and similar "thinking" models emit a <think>...</think>
+        # reasoning block before the actual answer; for structured
+        # extraction tasks we want the direct answer, not the reasoning
+        # trace eating the token budget. vLLM ignores this field for
+        # models that don't support it.
+        "chat_template_kwargs": {"enable_thinking": False},
     }
     headers = {"Authorization": f"Bearer {settings.llm_api_key}"}
     async with httpx.AsyncClient(timeout=settings.request_timeout_s) as client:
@@ -66,7 +72,8 @@ def _vllm_chat(messages: List[Dict[str, str]]) -> str:
         "model": settings.llm_model,
         "messages": messages,
         "temperature": 0.2,
-        "max_tokens": 512,
+        "max_tokens": 1024,
+        "chat_template_kwargs": {"enable_thinking": False},
     }
     headers = {"Authorization": f"Bearer {settings.llm_api_key}"}
     try:
