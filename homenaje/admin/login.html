@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acceso Familiar · Homenaje Prof. José Augusto Miranda</title>
+  <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+  <link rel="stylesheet" href="/admin/css/admin.css">
+</head>
+<body class="login-body">
+  <div class="login-card">
+    <div class="login-header">
+      <div style="width: 48px; height: 48px; border-radius: 50%; background: #B45309; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px auto; color: #FFF;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <h1 class="login-titulo">Panel de Administración</h1>
+      <p class="login-sub">Homenaje a José Augusto Miranda Rodríguez (1946–2026)</p>
+    </div>
+
+    <div id="loginError" style="display: none; background: #FEF2F2; color: #991B1B; padding: 12px; border-radius: 6px; font-size: 0.85rem; margin-bottom: 18px; border-left: 3px solid #B91C1C;"></div>
+
+    <div id="bloqueGoogle" style="display: none;">
+      <div id="botonGoogle" style="display: flex; justify-content: center; min-height: 44px;"></div>
+      <p style="text-align: center; font-size: 0.8rem; color: var(--admin-muted); margin-top: 10px;">
+        Solo las cuentas de Google autorizadas por la familia pueden entrar.
+      </p>
+    </div>
+
+    <div id="separadorLogin" style="display: none; text-align: center; color: var(--admin-muted); font-size: 0.8rem; margin: 18px 0;">— o con usuario y contraseña —</div>
+
+    <form id="formLogin" style="display: none;">
+      <div class="campo-form">
+        <label for="usuario" class="etiqueta-form">Usuario familiar</label>
+        <input type="text" id="usuario" name="usuario" class="input-form" placeholder="Nombre de usuario" required autocomplete="username">
+      </div>
+
+      <div class="campo-form">
+        <label for="contrasena" class="etiqueta-form">Contraseña</label>
+        <input type="password" id="contrasena" name="contrasena" class="input-form" placeholder="Contraseña de acceso" required autocomplete="current-password">
+      </div>
+
+      <button type="submit" id="btnLogin" class="btn-guardar" style="width: 100%; padding: 12px; font-size: 1rem; margin-top: 8px;">
+        Entrar al panel
+      </button>
+    </form>
+
+    <div style="text-align: center; margin-top: 24px; font-size: 0.85rem;">
+      <a href="/" style="color: var(--admin-muted); text-decoration: none;">← Volver al sitio homenaje</a>
+    </div>
+  </div>
+
+  <script src="/admin/js/login.js"></script>
+</body>
+</html>

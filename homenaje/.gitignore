@@ -1,0 +1,14 @@
+node_modules/
+.next/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+uploads/
+!uploads/.gitkeep
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+.jwt-secret

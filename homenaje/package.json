@@ -1,0 +1,29 @@
+{
+  "name": "homenaje-jose-augusto-miranda",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio homenaje del Prof. José Augusto Miranda Rodríguez (1946 – 2026)",
+  "main": "server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "seed": "node db/seed.js",
+    "crear-admin": "node scripts/crear-admin.js",
+    "build": "node scripts/build.js",
+    "backup": "node scripts/backup.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^13.0.3",
+    "dotenv": "^18.0.7",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.1",
+    "google-auth-library": "^11.2.0",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.4.0"
+  }
+}

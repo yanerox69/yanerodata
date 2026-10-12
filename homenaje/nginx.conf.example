@@ -1,0 +1,73 @@
+# Ejemplo de configuración Nginx para Producción en VPS
+# Reemplazar "homenaje-joseaugusto.com" con su dominio o subdominio real.
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name homenaje-joseaugusto.com www.homenaje-joseaugusto.com;
+
+    # Redirección automática a HTTPS (generado por Certbot)
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name homenaje-joseaugusto.com www.homenaje-joseaugusto.com;
+
+    # Certificados SSL de Let's Encrypt (Certbot)
+    ssl_certificate /etc/letsencrypt/live/homenaje-joseaugusto.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/homenaje-joseaugusto.com/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    # Límites de subida para fotos y archivos multimedia
+    client_max_body_size 20M;
+
+    # Compresión GZIP para máxima velocidad en conexiones móviles
+    gzip on;
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_comp_level 6;
+    gzip_types text/plain text/css text/xml application/json application/javascript application/rss+xml font/woff2 image/svg+xml;
+
+    # Seguridad en encabezados
+    add_header X-Content-Type-Options nosniff always;
+    add_header X-Frame-Options SAMEORIGIN always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+
+    # Servir archivos estáticos directamente con caché prolongada
+    location /css/ {
+        alias /var/www/homenaje-jose-augusto/public/css/;
+        expires 30d;
+        add_header Cache-Control "public, no-transform";
+    }
+
+    location /js/ {
+        alias /var/www/homenaje-jose-augusto/public/js/;
+        expires 30d;
+        add_header Cache-Control "public, no-transform";
+    }
+
+    location /img/ {
+        alias /var/www/homenaje-jose-augusto/public/img/;
+        expires 30d;
+        add_header Cache-Control "public, no-transform";
+    }
+
+    # /uploads/ lo sirve Node.js (tipos MIME correctos, nosniff y CSP restrictiva para archivos subidos)
+
+    # Proxy inverso a la aplicación Node.js / Express en puerto 3000
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+    }
+}

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administración Familiar · Homenaje Prof. Miranda</title>
+  <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+  <link rel="stylesheet" href="/admin/css/admin.css">
+</head>
+<body>
+
+  <!-- Barra lateral de navegación -->
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar-header">
+      <div class="sidebar-brand-titulo">José Augusto Miranda</div>
+      <div class="sidebar-brand-sub">Panel de Administración Familiar</div>
+    </div>
+
+    <nav class="admin-nav">
+      <button class="admin-nav-item activo" data-seccion="recuerdos">
+        <span>📖 Recuerdos</span>
+        <span class="badge-conteo" id="badgePendientes" style="display: none;">0</span>
+      </button>
+      <button class="admin-nav-item" data-seccion="portada">
+        <span>🖼️ Portada y Foto</span>
+      </button>
+      <button class="admin-nav-item" data-seccion="historia">
+        <span>📜 Su Historia</span>
+      </button>
+      <button class="admin-nav-item" data-seccion="trayectoria">
+        <span>🏛️ Trayectoria</span>
+      </button>
+      <button class="admin-nav-item" data-seccion="instrumentos">
+        <span>🎻 Instrumentos</span>
+      </button>
+      <button class="admin-nav-item" data-seccion="galeria">
+        <span>📷 Galería</span>
+      </button>
+      <button class="admin-nav-item" data-seccion="legado">
+        <span>🎼 Legado y Recursos</span>
+      </button>
+      <button class="admin-nav-item" data-seccion="eventos">
+        <span>📅 Homenajes y Eventos</span>
+      </button>
+      <button class="admin-nav-item" data-seccion="mensajes">
+        <span>✉️ Mensajes</span>
+      </button>
+      <button class="admin-nav-item" data-seccion="ajustes">
+        <span>⚙️ Ajustes y Clave</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="/api/admin/backup" class="btn-sidebar-accion" style="background: rgba(217, 119, 6, 0.25); color: #FEF3C7; font-weight: bold;" download>
+        💾 Copia de Seguridad (.zip)
+      </a>
+      <a href="/" target="_blank" class="btn-sidebar-accion">
+        🌐 Ver sitio público ↗
+      </a>
+      <button id="btnLogout" class="btn-sidebar-accion" style="color: #FCA5A5;">
+        🚪 Cerrar sesión
+      </button>
+    </div>
+  </aside>
+
+  <!-- Área principal de administración -->
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <h1 class="topbar-titulo" id="topbarTitulo">Libro de Recuerdos y Moderación</h1>
+      <div>
+        <small style="color: var(--admin-muted);">Conectado como: </small>
+        <strong id="adminUsuarioNombre">admin</strong>
+      </div>
+    </header>
+
+    <div class="admin-container">
+
+      <!-- ==========================================
+           1. SECCIÓN RECUERDOS (MODERACIÓN)
+           ========================================== -->
+      <section id="seccion_recuerdos" class="admin-seccion-panel">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <div>
+              <h2 class="admin-card-titulo">Moderación de Recuerdos y Testimonios</h2>
+              <small style="color: var(--admin-muted);">Los recuerdos enviados por los visitantes deben ser aprobados aquí antes de aparecer públicamente.</small>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <a href="/api/admin/recuerdos/exportar-csv" class="btn-accion-sm" style="text-decoration: none;" download>
+                📥 Exportar CSV
+              </a>
+              <a href="/api/admin/recuerdos/libro-imprimible" target="_blank" class="btn-accion-sm btn-destacar" style="text-decoration: none;">
+                🖨️ Libro Imprimible
+              </a>
+            </div>
+          </div>
+
+          <!-- Filtro de estado -->
+          <div style="display: flex; gap: 8px; margin-bottom: 20px;">
+            <button class="btn-accion-sm btn-filtro-recuerdos activo" data-estado="todos" data-accion="filtrarRecuerdos" data-args='["todos"]'>Todos</button>
+            <button class="btn-accion-sm btn-filtro-recuerdos" data-estado="pendiente" data-accion="filtrarRecuerdos" data-args='["pendiente"]'>Pendientes</button>
+            <button class="btn-accion-sm btn-filtro-recuerdos" data-estado="aprobado" data-accion="filtrarRecuerdos" data-args='["aprobado"]'>Aprobados</button>
+            <button class="btn-accion-sm btn-filtro-recuerdos" data-estado="oculto" data-accion="filtrarRecuerdos" data-args='["oculto"]'>Ocultos</button>
+          </div>
+
+          <div class="tabla-responsive">
+            <table class="admin-tabla">
+              <thead>
+                <tr>
+                  <th>Autor y Relación</th>
+                  <th>Mensaje y Foto</th>
+                  <th>Estado</th>
+                  <th>Portada</th>
+                  <th>Fecha</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tablaRecuerdosBody">
+                <!-- Cargado dinámicamente -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           2. SECCIÓN PORTADA
+           ========================================== -->
+      <section id="seccion_portada" class="admin-seccion-panel" style="display: none;">
+        <div class="grid-2">
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h2 class="admin-card-titulo">Foto Principal de Portada</h2>
+            </div>
+            <div style="text-align: center; margin-bottom: 20px;">
+              <img id="previewFotoPortada" src="/img/foto-jose-augusto.webp" alt="Foto portada" style="max-width: 200px; max-height: 250px; border-radius: 10px; object-fit: cover; border: 1px solid var(--admin-border);">
+            </div>
+            <form id="formSubirFotoPortada">
+              <div class="campo-form">
+                <label for="archivoFotoPortada" class="etiqueta-form">Subir nueva foto (JPG, PNG, WEBP, máx. 5 MB)</label>
+                <input type="file" id="archivoFotoPortada" class="input-form" accept="image/jpeg,image/png,image/webp" required>
+              </div>
+              <button type="submit" class="btn-guardar" style="width: 100%;">Actualizar foto de portada</button>
+            </form>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h2 class="admin-card-titulo">Textos de la Portada</h2>
+            </div>
+            <form id="formPortada">
+              <div class="campo-form">
+                <label for="portadaNombre" class="etiqueta-form">Nombre completo</label>
+                <input type="text" id="portadaNombre" class="input-form" required>
+              </div>
+              <div class="campo-form">
+                <label for="portadaSubtitulo" class="etiqueta-form">Subtítulo / Oficio</label>
+                <input type="text" id="portadaSubtitulo" class="input-form" required>
+              </div>
+              <div class="campo-form">
+                <label for="portadaFechas" class="etiqueta-form">Años (Nacimiento – Fallecimiento)</label>
+                <input type="text" id="portadaFechas" class="input-form" required>
+              </div>
+              <div class="campo-form">
+                <label for="portadaFrase" class="etiqueta-form">Frase conmemorativa de homenaje</label>
+                <textarea id="portadaFrase" class="textarea-form" required></textarea>
+              </div>
+              <button type="submit" class="btn-guardar">Guardar textos</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           3. SECCIÓN HISTORIA Y BIOGRAFÍA
+           ========================================== -->
+      <section id="seccion_historia" class="admin-seccion-panel" style="display: none;">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <div>
+              <h2 class="admin-card-titulo">Biografía y Datos Biográficos</h2>
+              <small style="color: var(--admin-muted);">Escriba los párrafos con naturalidad (separe con línea en blanco para nuevos párrafos).</small>
+            </div>
+          </div>
+          <form id="formHistoria">
+            <div class="campo-form">
+              <label for="bioTexto" class="etiqueta-form">Texto de la Biografía</label>
+              <textarea id="bioTexto" class="textarea-form" style="min-height: 180px;" required></textarea>
+            </div>
+            <div class="campo-form">
+              <label for="bioCita" class="etiqueta-form">Cita personal o frase destacada (opcional)</label>
+              <input type="text" id="bioCita" class="input-form">
+            </div>
+            <div class="grid-3">
+              <div class="campo-form">
+                <label for="bioNacimiento" class="etiqueta-form">Fecha de Nacimiento</label>
+                <input type="text" id="bioNacimiento" class="input-form">
+              </div>
+              <div class="campo-form">
+                <label for="bioFallecimiento" class="etiqueta-form">Fecha de Fallecimiento</label>
+                <input type="text" id="bioFallecimiento" class="input-form">
+              </div>
+              <div class="campo-form">
+                <label for="bioLugar" class="etiqueta-form">Lugar</label>
+                <input type="text" id="bioLugar" class="input-form">
+              </div>
+            </div>
+            <button type="submit" class="btn-guardar">Guardar Biografía</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           4. SECCIÓN TRAYECTORIA
+           ========================================== -->
+      <section id="seccion_trayectoria" class="admin-seccion-panel" style="display: none;">
+        <div class="grid-2">
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h2 class="admin-card-titulo">Hitos de Trayectoria Registrados</h2>
+            </div>
+            <div id="listaTrayectoriaAdmin"></div>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h2 class="admin-card-titulo">Agregar Hito o Institución</h2>
+            </div>
+            <form id="formNuevaTrayectoria">
+              <div class="campo-form">
+                <label class="etiqueta-form">Tipo de actividad</label>
+                <select name="tipo" class="select-form" required>
+                  <option value="Docencia">Docencia escolar</option>
+                  <option value="Cultura">Centro Cultural / Talleres</option>
+                  <option value="Orquesta">Orquesta Sinfónica</option>
+                  <option value="Reconocimiento">Reconocimiento / Premio</option>
+                </select>
+              </div>
+              <div class="campo-form">
+                <label class="etiqueta-form">Institución o Agrupación</label>
+                <input type="text" name="institucion" class="input-form" placeholder="Ej. Colegio Carlos J. Bello" required>
+              </div>
+              <div class="campo-form">
+                <label class="etiqueta-form">Título o Cargo</label>
+                <input type="text" name="titulo" class="input-form" placeholder="Ej. Profesor de Música" required>
+              </div>
+              <div class="grid-2">
+                <div class="campo-form">
+                  <label class="etiqueta-form">Año inicio (opcional)</label>
+                  <input type="text" name="desde" class="input-form" placeholder="Ej. 1975">
+                </div>
+                <div class="campo-form">
+                  <label class="etiqueta-form">Año fin (opcional)</label>
+                  <input type="text" name="hasta" class="input-form" placeholder="Ej. 2005">
+                </div>
+              </div>
+              <div class="campo-form">
+                <label class="etiqueta-form">Descripción</label>
+                <textarea name="descripcion" class="textarea-form" placeholder="Detalles de su labor en esta institución..."></textarea>
+              </div>
+              <button type="submit" class="btn-guardar">Agregar a la trayectoria</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           5. SECCIÓN INSTRUMENTOS
+           ========================================== -->
+      <section id="seccion_instrumentos" class="admin-seccion-panel" style="display: none;">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h2 class="admin-card-titulo">Gestión de Instrumentos (Violín, Guitarra, Cuatro)</h2>
+          </div>
+          <div id="listaInstrumentosAdmin"></div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           6. SECCIÓN GALERÍA
+           ========================================== -->
+      <section id="seccion_galeria" class="admin-seccion-panel" style="display: none;">
+        <div class="grid-2">
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h2 class="admin-card-titulo">Subir a la Galería</h2>
+            </div>
+            <form id="formNuevaGaleria" enctype="multipart/form-data">
+              <div class="campo-form">
+                <label class="etiqueta-form">Tipo de elemento</label>
+                <select name="tipo" class="select-form" required>
+                  <option value="foto">Fotografía</option>
+                  <option value="video">Video (enlace YouTube/Vimeo)</option>
+                  <option value="audio">Audio grabado (MP3 / OGG)</option>
+                </select>
+              </div>
+              <div class="campo-form">
+                <label class="etiqueta-form">Título o motivo</label>
+                <input type="text" name="titulo" class="input-form" placeholder="Ej. Recital escolar de fin de curso" required>
+              </div>
+              <div class="grid-2">
+                <div class="campo-form">
+                  <label class="etiqueta-form">Etiqueta</label>
+                  <select name="etiqueta" class="select-form">
+                    <option value="Clases">Clases</option>
+                    <option value="Conciertos">Conciertos</option>
+                    <option value="Casa de la Cultura">Casa de la Cultura</option>
+                    <option value="Familia">Familia</option>
+                    <option value="Orquesta">Orquesta</option>
+                  </select>
+                </div>
+                <div class="campo-form">
+                  <label class="etiqueta-form">Año aproximado</label>
+                  <input type="text" name="anio" class="input-form" placeholder="Ej. 1994">
+                </div>
+              </div>
+              <div class="campo-form">
+                <label class="etiqueta-form">Archivo (Foto máx 5 MB o Audio máx 15 MB)</label>
+                <input type="file" name="archivo" class="input-form" accept="image/*,audio/*">
+              </div>
+              <div class="campo-form">
+                <label class="etiqueta-form">O enlace externo de Video (YouTube / Vimeo)</label>
+                <input type="url" name="url" class="input-form" placeholder="https://www.youtube.com/watch?v=...">
+              </div>
+              <div class="campo-form">
+                <label class="etiqueta-form">Nota o descripción</label>
+                <textarea name="descripcion" class="textarea-form" placeholder="Breve nota sobre la foto o grabación..."></textarea>
+              </div>
+              <button type="submit" class="btn-guardar">Agregar elemento</button>
+            </form>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h2 class="admin-card-titulo">Elementos en Galería</h2>
+            </div>
+            <div id="listaGaleriaAdmin" style="display: flex; flex-direction: column; gap: 10px;"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           7. SECCIÓN LEGADO, REPERTORIO Y RECURSOS
+           ========================================== -->
+      <section id="seccion_legado" class="admin-seccion-panel" style="display: none;">
+        <div class="grid-2">
+          <!-- Repertorio -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h2 class="admin-card-titulo">Repertorio Escolar Tradicional</h2>
+            </div>
+            <form id="formNuevoRepertorio" style="margin-bottom: 20px;">
+              <div class="campo-form">
+                <label class="etiqueta-form">Título de la pieza tradicional</label>
+                <input type="text" name="titulo" class="input-form" placeholder="Ej. Moliendo café" required>
+              </div>
+              <div class="grid-2">
+                <div class="campo-form">
+                  <label class="etiqueta-form">Grado / Nivel</label>
+                  <input type="text" name="grado" class="input-form" placeholder="Ej. Primaria">
+                </div>
+                <div class="campo-form">
+                  <label class="etiqueta-form">Tipo</label>
+                  <input type="text" name="tipo" class="input-form" placeholder="Ej. Merengue tradicional">
+                </div>
+              </div>
+              <div class="campo-form">
+                <label class="etiqueta-form">Nota pedagógica</label>
+                <input type="text" name="nota" class="input-form" placeholder="Ej. Trabajo rítmico y coral">
+              </div>
+              <button type="submit" class="btn-guardar">Agregar pieza</button>
+            </form>
+            <div id="listaRepertorioAdmin"></div>
+          </div>
+
+          <!-- Recursos PDF -->
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h2 class="admin-card-titulo">Recursos Descargables (PDF)</h2>
+            </div>
+            <form id="formSubirRecursoPDF" enctype="multipart/form-data" style="margin-bottom: 20px;">
+              <div class="campo-form">
+                <label class="etiqueta-form">Título del documento</label>
+                <input type="text" name="titulo" class="input-form" placeholder="Ej. Cancionero Escolar en Cuatro" required>
+              </div>
+              <div class="campo-form">
+                <label class="etiqueta-form">Descripción breve</label>
+                <input type="text" name="descripcion" class="input-form" placeholder="Ej. Cuaderno de iniciación musical">
+              </div>
+              <div class="campo-form">
+                <label class="etiqueta-form">Archivo PDF (máx. 15 MB)</label>
+                <input type="file" name="archivo" class="input-form" accept="application/pdf" required>
+              </div>
+              <button type="submit" class="btn-guardar">Subir PDF</button>
+            </form>
+            <div id="listaRecursosAdmin"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           8. SECCIÓN HOMENAJES Y EVENTOS
+           ========================================== -->
+      <section id="seccion_eventos" class="admin-seccion-panel" style="display: none;">
+        <div class="grid-2">
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h2 class="admin-card-titulo">Registrar Acto o Misa Conmemorativa</h2>
+            </div>
+            <form id="formNuevoEvento">
+              <div class="campo-form">
+                <label class="etiqueta-form">Título del evento u homenaje</label>
+                <input type="text" name="titulo" class="input-form" placeholder="Ej. Misa en su Memoria" required>
+              </div>
+              <div class="campo-form">
+                <label class="etiqueta-form">Fecha y hora</label>
+                <input type="datetime-local" name="inicio" class="input-form" required>
+              </div>
+              <div class="campo-form">
+                <label class="etiqueta-form">Lugar</label>
+                <input type="text" name="lugar" class="input-form" placeholder="Ej. Iglesia Catedral de Valle de la Pascua">
+              </div>
+              <div class="campo-form">
+                <label class="etiqueta-form">Descripción</label>
+                <textarea name="descripcion" class="textarea-form" placeholder="Detalles de la ceremonia o acto conmemorativo..."></textarea>
+              </div>
+              <button type="submit" class="btn-guardar">Publicar Evento</button>
+            </form>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h2 class="admin-card-titulo">Eventos Activos</h2>
+            </div>
+            <div id="listaEventosAdmin"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           9. SECCIÓN MENSAJES
+           ========================================== -->
+      <section id="seccion_mensajes" class="admin-seccion-panel" style="display: none;">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h2 class="admin-card-titulo">Mensajes Directos para la Familia</h2>
+          </div>
+          <div id="listaMensajesAdmin"></div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           10. SECCIÓN AJUSTES Y CONTRASEÑA
+           ========================================== -->
+      <section id="seccion_ajustes" class="admin-seccion-panel" style="display: none;">
+        <div class="grid-2">
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h2 class="admin-card-titulo">Canales de Contacto Familiar</h2>
+            </div>
+            <form id="formAjustesContacto">
+              <div class="campo-form">
+                <label for="contactoEmail" class="etiqueta-form">Correo electrónico familiar (opcional)</label>
+                <input type="email" id="contactoEmail" class="input-form" placeholder="familia@ejemplo.com">
+              </div>
+              <div class="campo-form">
+                <label for="contactoWpp" class="etiqueta-form">Número WhatsApp familiar (opcional)</label>
+                <input type="text" id="contactoWpp" class="input-form" placeholder="+58 412 1234567">
+              </div>
+              <div class="campo-form">
+                <label for="contactoMensaje" class="etiqueta-form">Mensaje de bienvenida al contacto</label>
+                <textarea id="contactoMensaje" class="textarea-form"></textarea>
+              </div>
+              <button type="submit" class="btn-guardar">Guardar Canales</button>
+            </form>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h2 class="admin-card-titulo">Cambiar Contraseña Familiar</h2>
+            </div>
+            <form id="formCambiarClave">
+              <div class="campo-form">
+                <label for="claveActual" class="etiqueta-form">Contraseña actual</label>
+                <input type="password" id="claveActual" class="input-form" required>
+              </div>
+              <div class="campo-form">
+                <label for="claveNueva" class="etiqueta-form">Nueva contraseña (mínimo 10 caracteres)</label>
+                <input type="password" id="claveNueva" class="input-form" required minlength="10">
+              </div>
+              <button type="submit" class="btn-guardar">Actualizar Contraseña</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Notificación Toast -->
+  <div id="adminToast" class="toast-alerta"></div>
+
+  <script src="/admin/js/admin.js"></script>
+</body>
+</html>
