@@ -1,0 +1,49 @@
+feature,area,priority,original,clone,notes
+Sign in with email and one-time code,account,must,yes,no,code expires after 10 minutes per FAQ
+Sign in with Google,account,could,yes,no,web only per FAQ; Facebook too
+Drag and drop or pick audio/video files,upload,must,yes,no,MP3 OGG WAV FLAC AIFF AAC M4A + AVI MP4 MKV MOV M4V
+Extract audio from video files,upload,must,yes,no,
+Batch upload up to 20 files,upload,must,yes,no,
+Per-file stem selection in a batch,upload,should,yes,no,plus one header control to set all
+Remove or add files before processing,upload,should,yes,no,
+Stem: vocals / instrumental,stems,must,yes,no,each type gives 2 outputs: the stem and the rest
+Stem: drums,stems,must,yes,no,
+Stem: bass,stems,must,yes,no,
+Stem: piano,stems,should,yes,no,
+Stem: electric guitar,stems,should,yes,no,
+Stem: acoustic guitar,stems,could,yes,no,open models may only give one guitar stem
+Stem: synthesizer,stems,could,yes,no,
+Stem: strings,stems,could,yes,no,
+Stem: wind instruments,stems,could,yes,no,
+Stem: voice and noise (noise reduction),stems,should,yes,no,noise level mild / normal / aggressive
+Multistem: several stem types per file in one job,stems,should,yes,no,
+Choose the separation model,settings,should,yes,no,original offers its own named networks; ours lists open models
+Enhanced processing mode (clear cut / deep extraction),settings,could,yes,no,
+De-echo / de-reverb,settings,could,yes,no,
+Lead / backing vocal separation,settings,could,yes,no,
+Free preview of a stem before the full split,preview,must,yes,no,unlimited previews; short clip
+In-app audio player for previews and results,preview,must,yes,no,
+Process in the cloud,processing,should,yes,no,GPU server queue
+Process locally and offline on the device,processing,must,yes,no,original: Pro only; 7 stems; GPU/NPU if available
+Processing progress and queue status per file,processing,must,yes,no,
+Desktop notification when a split finishes,processing,should,yes,no,
+Output in the original file format,output,must,yes,no,
+Choose output folder,output,must,yes,no,desktop preferences
+Open file location from a result,output,should,yes,no,
+Download results (web),output,must,yes,no,
+Splitting history,history,must,yes,no,
+Minutes balance shown in the header,billing,should,yes,no,minutes = file length x number of stem types
+Fast queue vs relaxed queue,billing,could,yes,no,
+Free plan with preview only and paid plans to download,billing,should,yes,no,
+Subscription checkout and manage / cancel,billing,should,yes,no,
+One-time minute packs,billing,could,yes,no,
+Use on up to 3 devices,billing,could,yes,no,
+Check for updates from the profile menu,app,should,yes,no,desktop auto-update
+Windows 10/11 macOS 10.15+ Ubuntu 22.04+ builds,app,must,yes,no,
+Web app version,app,must,yes,no,
+The original's own neural networks,stems,could,yes,skip,proprietary models; we use open-licensed separation models instead
+Voice packs / voice changer,voice,could,yes,skip,out of this slice
+VST / DAW plugin,plugins,could,yes,skip,out of this slice
+iOS and Android apps,app,could,yes,skip,out of this slice
+Public developer API,api,could,yes,skip,out of this slice
+Affiliate program,business,could,yes,skip,their business program; not a product feature
