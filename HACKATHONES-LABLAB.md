@@ -19,7 +19,7 @@ Según tu página *My Teams* de lablab (lablab.ai/profile/my-teams), tienes **6 
 | 3 | WeAreDevelopers × BAND present: Dark Factory (hackathon edition) | Dark Factory | Dark Factory — pocketful | 6 oct 2026 | ✅ Pasado · 147/147 |
 | 4 | AMD Developer Hackathon: ACT III | Yanero Rockstar | DocuSwarm | 18 oct 2026 | 🔴 En curso · **cierra mañana** · proyecto solo en tu PC |
 | 5 | Vultr: Agent Rush Hackathon | Airlock | Airlock | 8 nov 2026 | ⏳ En curso · textos preparados |
-| 6 | AMD AI League | Yanero Rockstar | ❓ | 1 dic 2026 | ⏳ En curso · sin proyecto en ningún repo |
+| 6 | AMD AI League | Yanero Rockstar | DocuSwarm (el mismo del #4) | 1 dic 2026 | ⏳ En curso · proyecto solo en tu PC |
 
 > **Lo que falta y no está en ningún repo:** el enlace del video de Dark Factory y
 > el de Airlock. Si los tienes en YouTube, añádelos en su sección.
@@ -388,8 +388,10 @@ Blast radius — zero.
 
 ---
 
-## 6. AMD AI League
+## 6. DocuSwarm — AMD AI League
 
 - **Equipo en lablab:** Yanero Rockstar · **Cierre:** 1 de diciembre de 2026
-- ⚠️ No hay ningún proyecto de este hackathon en tus repositorios de GitHub.
-  Todos los campos del formulario están pendientes.
+- **Proyecto:** DocuSwarm, el mismo de la sección 5 (AMD Developer Hackathon: ACT III).
+  Se reutilizan los mismos textos, video, PDF, repositorio y demo; si para la
+  AI League añades mejoras, actualiza la descripción larga y el video.
+- ⚠️ Pendiente de los datos de DocuSwarm (el proyecto está solo en tu PC).
