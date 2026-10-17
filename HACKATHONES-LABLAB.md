@@ -17,9 +17,9 @@ Según tu página *My Teams* de lablab (lablab.ai/profile/my-teams), tienes **6 
 | 1 | AssemblyAI — Voice Agent Hackathon | RevenueFlow | RevenueFlow | 30 sep 2026 | ✅ Pasado · enviado el 10 sep |
 | 2 | IBM Bob 2.0 hackathon | Yanero Rockstar | Issue → PR with IBM Bob 2.0 | 27 sep 2026 | ✅ Pasado |
 | 3 | WeAreDevelopers × BAND present: Dark Factory (hackathon edition) | Dark Factory | Dark Factory — pocketful | 6 oct 2026 | ✅ Pasado · 147/147 |
-| 4 | AMD Developer Hackathon: ACT III | Yanero Rockstar | DocuSwarm | 18 oct 2026 | 🔴 En curso · **cierra mañana** · proyecto solo en tu PC |
+| 4 | AMD Developer Hackathon: ACT III | Yanero Rockstar | DocuSwarm | 18 oct 2026 | ✅ Enviado el 12 oct (Event Tracks añadidos el 16) |
 | 5 | Vultr: Agent Rush Hackathon | Airlock | Airlock | 8 nov 2026 | ⏳ En curso · textos preparados |
-| 6 | AMD AI League | Yanero Rockstar | DocuSwarm (el mismo del #4) | 1 dic 2026 | ⏳ En curso · proyecto solo en tu PC |
+| 6 | AMD AI League | Yanero Rockstar | DocuSwarm (el mismo del #4) | 1 dic 2026 | ⏳ En curso · reutiliza los datos de la sección 5 |
 
 > **Lo que falta y no está en ningún repo:** el enlace del video de Dark Factory y
 > el de Airlock. Si los tienes en YouTube, añádelos en su sección.
@@ -367,15 +367,76 @@ Blast radius — zero.
 
 ## 5. DocuSwarm — AMD Developer Hackathon: ACT III
 
-- **Formato:** híbrido — build online del 12 al 17 de octubre de 2026, fase presencial 17–18 de octubre
-- **Registro:** a través del AMD Developer Program
-- ⚠️ **No encontré ningún proyecto de este hackathon** en tus 16 repositorios de
-  GitHub (busqué "AMD", "ROCm", "MI300", "Act III", "hackathon" y "lablab").
-  Para completar esta sección hace falta: nombre del proyecto, repositorio,
-  enlace del video, PDF de slides, portada y URL de la demo.
+- **Página:** https://lablab.ai/ai-hackathons/amd-developer-hackathon-act-iii
+- **Equipo:** Yanero Rockstar (https://lablab.ai/ai-hackathons/amd-developer-hackathon-act-iii/yanero-rockstar)
+- **Enviado:** 12 oct 2026 · actualizado el 15 y el 16 oct (se añadieron los *Event Tracks*)
+- **Código:** rama `claude/amd-hackathon-act-iii-5b0pcq` de este repo (`yanerodata`)
+- Probado en vivo en una **AMD Instinct MI300X** (AMD Developer Cloud) con **vLLM + Qwen3-8B**
 
-| Campo | Valor |
+### Paso 1 — Basic Information
+
+**Submission Title** (45/50)
+```
+DocuSwarm: Parallel Due-Diligence on AMD GPUs
+```
+
+**Short Description**
+```
+Upload contracts and a swarm of async agents analyzes them in parallel on AMD Instinct GPUs via vLLM — surfacing risk level, red flags, and key dates, with a live GPU-throughput dashboard.
+```
+
+**Long Description**
+```
+DocuSwarm is a parallel document due-diligence agent swarm built for the AMD Developer Hackathon: ACT III — "AI agents and high-performance AI applications on AMD GPUs in the cloud."
+
+Reviewing contracts, NDAs, and reports for risky clauses is slow, manual work done one document at a time. DocuSwarm turns it into a single upload: drop in up to 20 documents and a swarm of async agents analyzes them concurrently against the same LLM endpoint, surfacing risk level, red flags, key dates, and parties per document, with a consolidated Excel/JSON report.
+
+This isn't a chatbot demo — it's built to make AMD GPU throughput visible. Every document gets its own async task bounded by a semaphore; all of them hit the same vLLM server, which is exactly the continuous-batching workload AMD Instinct GPUs + ROCm + vLLM are built for. A live dashboard streams completed/total, tokens/sec, elapsed time, and active concurrency in real time.
+
+Tested end-to-end on an AMD Instinct MI300X (AMD Developer Cloud) serving Qwen3-8B via vLLM: 6 documents processed concurrently in 1.5 seconds at 1,653.9 tokens/sec — real GPU throughput, not a simulation. Each result reflects genuine LLM judgment (e.g., a contract flagged MEDIUM risk with specific red flags like termination penalties and liquidated damages), not keyword matching.
+
+The backend is provider-agnostic by design: it talks to any OpenAI-compatible endpoint, so moving from a laptop to an AMD GPU instance is a one-line config change.
+
+Tech stack: FastAPI + asyncio backend, React/Vite dashboard streaming over Server-Sent Events, vLLM serving on AMD Instinct GPUs (ROCm), openpyxl for Excel export.
+
+Repo: github.com/yanerox69/yanerodata
+```
+
+**Participation Mode:** Online
+
+**Categories:** `Documents · Legal · Developer Tools`
+
+**Event Tracks:** `Evolus Business Agents on AMD · Intelligent Industry`
+
+**Technologies:** `AMD Developer Cloud · AMD ROCm · Qwen3 · vLLM · FastAPI · React · Python · Claude Code`
+*(se quitaron Nvidia, Assistants API y Anthropic Claude porque el proyecto no los usa)*
+
+### Paso 2 — Media
+
+| Campo | Archivo |
 |---|---|
+| Cover Image (16:9) | `cover_image.png` — 1920×1080, captura del dashboard |
+| Video Presentation | `docuswarm_final5.mp4` — demo narrada con datos reales de rendimiento |
+| Slide Presentation (PDF) | `docuswarm_deck.pdf` — 9 slides: problema, solución, captura, rendimiento en GPU AMD, arquitectura, encaje con el hackathon, stack y cierre |
+
+> Estos tres archivos los subiste desde tu PC; no están en ningún repo.
+
+### Paso 3 — Application
+
+- **GitHub Repository:** https://github.com/yanerox69/yanerodata (código en la rama `claude/amd-hackathon-act-iii-5b0pcq`)
+- **Demo Platform:** Other
+- **Demo URL:** http://129.212.188.131:3000 (la instancia MI300X ya está apagada)
+
+**Additional Information**
+```
+Note: the live demo was running on a real AMD Instinct MI300X GPU Droplet (AMD Developer Cloud), fully functional — all results shown in the video and slide deck were captured live from that instance (6 documents processed in 1.5s at 1,653.9 tokens/sec). The droplet was powered off after the AMD Developer Cloud trial credit was exhausted, so the demo URL above may no longer respond. The video presentation shows the application running live end-to-end on the real GPU as proof.
+```
+
+> ⚠️ El README de la rama todavía dice que no se pudo conectar a una GPU AMD real
+> (sección *Status*). Contradice lo que dice la entrega: conviene actualizarlo
+> antes de que el jurado lo lea.
+
+---|---|
 | Submission Title | _pendiente_ |
 | Short Description | _pendiente_ |
 | Long Description | _pendiente_ |
@@ -394,4 +455,3 @@ Blast radius — zero.
 - **Proyecto:** DocuSwarm, el mismo de la sección 5 (AMD Developer Hackathon: ACT III).
   Se reutilizan los mismos textos, video, PDF, repositorio y demo; si para la
   AI League añades mejoras, actualiza la descripción larga y el video.
-- ⚠️ Pendiente de los datos de DocuSwarm (el proyecto está solo en tu PC).
