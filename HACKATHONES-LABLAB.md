@@ -16,7 +16,7 @@ El formulario de lablab tiene 3 pasos:
 | 2 | IBM Bob 2.0 Hackathon | Issue → PR with IBM Bob 2.0 | 25–27 sep 2026 | ✅ Repo con video y slides |
 | 3 | WeAreDevelopers × BAND — Dark Factory (pista *pocketful*) | Dark Factory — pocketful | 26 sep – 5 oct 2026 | ✅ Build hecho (147/147) |
 | 4 | Vultr: Agent Rush Hackathon | Airlock | 3–8 nov 2026 | ⏳ Todavía no abre — textos preparados |
-| 5 | AMD Developer Hackathon: ACT III | ❓ | 12–17 oct 2026 (online) · 17–18 oct (presencial) | ❓ Sin proyecto en ningún repo |
+| 5 | AMD Developer Hackathon: ACT III | DocuSwarm | 12–17 oct 2026 (online) · 17–18 oct (presencial) | ❓ Sin proyecto en ningún repo |
 
 > **Lo que falta y no está en ningún repo:** el enlace del video de Dark Factory y
 > el de Airlock. Si los tienes en YouTube, añádelos en su sección.
@@ -362,7 +362,7 @@ Blast radius — zero.
 
 ---
 
-## 5. AMD Developer Hackathon: ACT III
+## 5. DocuSwarm — AMD Developer Hackathon: ACT III
 
 - **Formato:** híbrido — build online del 12 al 17 de octubre de 2026, fase presencial 17–18 de octubre
 - **Registro:** a través del AMD Developer Program
