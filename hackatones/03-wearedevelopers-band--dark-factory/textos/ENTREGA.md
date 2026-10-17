@@ -64,9 +64,8 @@ Take BAND out and this factory does not degrade. It disappears — the rejection
 
 ## Reseñas del jurado
 
-| Valor de negocio | Originalidad | Presentación | Uso de la tecnología | Comentario |
-|---|---|---|---|---|
-| None | None | None | None |  |
-| None | None | None | None | Dark Factory demonstrates meaningful agent collaboration through separate coordinator, implementer, and reviewer roles, with a 158-item specification checklist and 147 passing checks. Cost and execution metrics are clearly documented. However, two defects escaped review and required human intervention, including a login failure. The incomplete autonomous verification and limited evidence of a polished user interface prevent higher scores. |
-| None | None | None | None |  |
-| None | None | None | None | The reviewer checks the spec, not the implementer’s report, and all three seats are the same model. The difference is the mandate. Before any code, a 158-item checklist came from the spec text only. The coordinator said an empty body means an empty object. The reviewer agreed and still rejected it: the stored body must be that empty object, or a legitimate retry reads as a key reuse. That is a money bug caught before a line. Then the reviewer was stopped to save budget. Two defects shipped, one of them login impossible after an import. The owner caught both. 3 hours 49 minutes, $11.70, 147 of 147 shipped checks. Input outweighed output 54 to 1 because each turn rereads the room. An honest factory, with the miss written down. |
+En este hackathon el jurado dejó comentarios sin puntuación numérica.
+
+> Dark Factory demonstrates meaningful agent collaboration through separate coordinator, implementer, and reviewer roles, with a 158-item specification checklist and 147 passing checks. Cost and execution metrics are clearly documented. However, two defects escaped review and required human intervention, including a login failure. The incomplete autonomous verification and limited evidence of a polished user interface prevent higher scores.
+
+> The reviewer checks the spec, not the implementer’s report, and all three seats are the same model. The difference is the mandate. Before any code, a 158-item checklist came from the spec text only. The coordinator said an empty body means an empty object. The reviewer agreed and still rejected it: the stored body must be that empty object, or a legitimate retry reads as a key reuse. That is a money bug caught before a line. Then the reviewer was stopped to save budget. Two defects shipped, one of them login impossible after an import. The owner caught both. 3 hours 49 minutes, $11.70, 147 of 147 shipped checks. Input outweighed output 54 to 1 because each turn rereads the room. An honest factory, with the miss written down.
