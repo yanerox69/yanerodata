@@ -1,0 +1,10 @@
+[
+  { "slug": "agentes-de-codigo", "nombre": "Agentes de código e IDEs", "descripcion": "Para escribir, refactorizar y depurar código con IA desde la terminal o el editor." },
+  { "slug": "constructores-no-code", "nombre": "Constructores de apps sin código", "descripcion": "Describe la app en lenguaje natural y obtén algo desplegado." },
+  { "slug": "bases-de-datos", "nombre": "Bases de datos y backend", "descripcion": "Dónde guardar usuarios, datos y archivos sin montar servidores." },
+  { "slug": "hosting", "nombre": "Hosting y despliegue", "descripcion": "Pon tu proyecto en internet con un dominio y HTTPS." },
+  { "slug": "apis-de-ia", "nombre": "APIs de modelos de IA", "descripcion": "Los modelos que llamas desde tu código para generar texto, código o imágenes." },
+  { "slug": "voz-imagen-video", "nombre": "Voz, imagen y vídeo", "descripcion": "Genera audio, imágenes y vídeo para tu producto o tu contenido." },
+  { "slug": "pagos-y-email", "nombre": "Pagos y email", "descripcion": "Cobra a tus clientes y envía emails y newsletters." },
+  { "slug": "frameworks-de-agentes", "nombre": "Frameworks de agentes", "descripcion": "Librerías y protocolos para construir tus propios agentes." }
+]
