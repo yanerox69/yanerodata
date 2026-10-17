@@ -418,17 +418,6 @@ Note: the live demo was running on a real AMD Instinct MI300X GPU Droplet (AMD D
 ```
 
 
----|---|
-| Submission Title | _pendiente_ |
-| Short Description | _pendiente_ |
-| Long Description | _pendiente_ |
-| Categories / Technologies | _pendiente_ (seguramente AMD Developer Cloud · ROCm · AMD Instinct) |
-| Cover Image | _pendiente_ |
-| Video Presentation | _pendiente_ |
-| Slide Presentation (PDF) | _pendiente_ |
-| GitHub Repository | _pendiente_ |
-| Demo URL | _pendiente_ |
-
 ---
 
 ## 6. DocuSwarm — AMD AI League
