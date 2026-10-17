@@ -226,7 +226,7 @@ Take BAND out and this factory does not degrade. It disappears — the rejection
 | Campo | Archivo / enlace |
 |---|---|
 | Cover Image | La página publicada no muestra portada. En el repo `dark-factory` hay una: [`web/cover.png`](https://github.com/yanerox69/dark-factory/blob/main/web/cover.png) (1280×720) |
-| Video Presentation | **No se subió video** (la página no tiene ninguno) |
+| Video Presentation | ✅ Subido — visible en la página publicada (comprobado el 17 oct) |
 | Slide Presentation (PDF) | [PDF publicado en lablab](https://storage.googleapis.com/lablab-static-eu/submissions/z6mh2dr7tqz6cer8l60q0jqv/i39x9a1pno73y9ry1lezwm9y/presentation/presentation_cspwydrwwpybz99lgc7zqs62.pdf) · copia en el repo: [`deck.pdf`](https://github.com/yanerox69/dark-factory/blob/main/deck.pdf) |
 
 ### Paso 3 — Application
