@@ -16,13 +16,13 @@ Según tu página *My Teams* de lablab (lablab.ai/profile/my-teams), tienes **6 
 |---|---|---|---|---|---|
 | 1 | AssemblyAI — Voice Agent Hackathon | RevenueFlow | RevenueFlow | 30 sep 2026 | ✅ Pasado · enviado el 10 sep |
 | 2 | IBM Bob 2.0 hackathon | Yanero Rockstar | Issue → PR with IBM Bob 2.0 | 27 sep 2026 | ✅ Pasado |
-| 3 | WeAreDevelopers × BAND present: Dark Factory (hackathon edition) | Dark Factory | Dark Factory — pocketful | 6 oct 2026 | ✅ Pasado · 147/147 |
+| 3 | WeAreDevelopers × BAND present: Dark Factory (hackathon edition) | Dark Factory | Dark Factory — pocketful | 6 oct 2026 | ✅ Enviado el 28 sep · 147/147 |
 | 4 | AMD Developer Hackathon: ACT III | Yanero Rockstar | DocuSwarm | 18 oct 2026 | ✅ Enviado el 12 oct (Event Tracks añadidos el 16) |
 | 5 | Vultr: Agent Rush Hackathon | Airlock | Airlock | 8 nov 2026 | ⏳ En curso · textos preparados |
 | 6 | AMD AI League | Yanero Rockstar | DocuSwarm (el mismo del #4) | 1 dic 2026 | ⏳ En curso · reutiliza los datos de la sección 5 |
 
-> **Lo que falta y no está en ningún repo:** el enlace del video de Dark Factory y
-> el de Airlock. Si los tienes en YouTube, añádelos en su sección.
+> **Lo único pendiente:** el video y la URL de la demo de Airlock (el hackathon de
+> Vultr cierra el 8 de noviembre).
 
 ---
 
@@ -180,81 +180,64 @@ Results per bug: RESULTS.md · Bob's patches and PRs: fixes/ · Bob session scre
 
 ## 3. Dark Factory — pocketful · WeAreDevelopers × BAND
 
-- **Pista:** 💸 pocketful (clon de Venmo: billetera y pagos)
-- **Equipo:** revenueflow
-- **Build:** 26 sep – cierre 5 oct 2026, 02:59 hora de Venezuela
-- **Premios:** $6.000 en efectivo entre dos pistas + $300 en créditos Featherless
-- **Ojo:** el `ENTREGA.md` del repo `dark-factory` es un borrador **anterior** con
-  5 agentes. La entrega real (repo `dark-factory-pocketful`) usó **3 seats** y
-  pasó **147 de 147** checks. Los textos de abajo corresponden a la entrega real.
+- **Página publicada de la entrega:** https://lablab.ai/ai-hackathons/wearedevelopers-hackathon/revenueflow/dark-factory-the-band-that-refuses-its-own-work
+- **Enviado:** 28 de septiembre de 2026 · **Equipo:** Dark Factory · **Pista:** 💸 pocketful (clon de Venmo)
+- **Premios del hackathon:** $6.000 en efectivo entre dos pistas + $300 en créditos Featherless
+- Los textos de abajo son **los que están publicados** en lablab (copiados de la página).
 
 ### Paso 1 — Basic Information
 
-**Submission Title** (49/50)
+**Submission Title**
 ```
 Dark Factory — the band that refuses its own work
 ```
 
-**Short Description** (≈215/255)
+**Short Description** (lo que muestra la página)
 ```
-A software factory in BAND Desktop: three coding-agent seats build a wallet and payments service against a written spec — two of them are forbidden from writing code, and one deviation rejects the whole handoff.
-```
-
-**Long Description** (≈1950/2000)
-```
-Dark Factory is a software factory built in BAND Desktop: three coding-agent seats in one room, coordinating through @mention routing, building pocketful — a wallet and payments service — against a written specification.
-
-THE DESIGN CHOICE
-Grading is literal and automated: exact field names, exact status codes. A correct-looking result with one mistyped attribute scores nothing. So the advantage is not implementing faster — it is refusing to hand off anything that does not conform. Two of the three seats are forbidden from writing production code: a coordinator that plans and runs the gate, an implementer, and a reviewer.
-
-HOW WORK MOVES
-Adding a seat to a room does not wake it; a message must mention it. Every handoff is an explicit @mention, and targets are never hardcoded: each mandate tells the seat to inspect the room and mention whoever holds the next role. Rejections travel backwards with expected-versus-actual.
-
-A BAD RESULT THE FACTORY CAUGHT
-Before any code existed, the reviewer corrected the coordinator's reading of an ambiguous spec point on idempotency storage. The correction became binding items in a 158-item contract built from the spec only — 22 of them flagged as requirements no shipped test would catch.
-
-THE PRODUCT
-Money must never be created, destroyed or spent twice. Conservation, non-negativity under every interleaving, exactly-once on idempotency replay. Integer minor units only; no float64 on the money path.
-
-RESULTS
-147 of 147 shipped checks, stage 1, in one 3h49m session: 451 messages, 11.7M tokens, $11.70 of Featherless credit.
-
-WHAT WE DECLARE
-The reviewer was stopped mid-run to save budget, and two defects slipped past the seats until the owner's gate caught them. We report it rather than reframe it: the verifier is the only optional part of this factory, and it is the part that was cut.
+Pocketful
 ```
 
-**Categories:** `Developer Tools · Multi-Agent Systems · Autonomous Software Engineering`
+**Long Description**
+```
+Dark Factory is a software factory built in BAND Desktop: three coding-agent seats in one room, coordinating through @mention routing, building a wallet and payments service against a written specification.
 
-**Technologies:** `BAND · OpenCode · Featherless · Go · Docker · multi-agent · agentic coding`
+THE DESIGN DECISION
+Grading here is literal and automated: exact field names, exact status codes. One mistyped attribute scores nothing. So the advantage is not implementing faster; it is refusing to hand off anything that does not conform. Two of the three seats are forbidden from writing production code: a coordinator who plans and holds the gate, an implementer, and a reviewer who checks conformance against the spec text, never against the implementer's report. All three run the same harness and model — OpenCode on Featherless, GLM-5.2 — so nothing comes from giving a role a better model. The only difference is the mandate file, loaded as that seat's system prompt.
 
-> En el borrador decía `BAND, Jam, Claude Code, OpenRouter, Node.js`. La entrega
-> real terminó en OpenCode + Featherless y el servicio está en Go (ver `FACTORY.md`).
+WHAT IT CAUGHT
+Before any code existed, the reviewer turned the specification into a 158-item checklist, derived from the spec text only, never from the shipped tests, which are a sample that would encode its own blind spots as the requirement. Then one seat corrected another: the coordinator ruled that an empty request body means an empty object; the reviewer confirmed it and rejected it as incomplete, because the stored body must be that empty object too, or a legitimate retry reads as a key reuse — a money bug, caught before a line was written.
+
+WHAT IT MISSED
+We stopped the reviewer partway to conserve budget. Two defects shipped past the seats, one of them making login impossible after an import. The owner caught both at the gate.
+
+MEASURED
+3h49m, 451 messages, 11,743,469 tokens, $11.70 of a $25 credit, 147 of 147 shipped checks. Input outweighed output 54 to 1: a seat re-reads the whole room every turn, so a factory costs what its own history costs.
+
+THE DELETE TEST
+Take BAND out and this factory does not degrade. It disappears — the rejection has no channel.
+```
+
+**Categories:** `Developer Tools · Open-ended Agent Protocol`
+
+**Technologies:** `Band Integrations · Featherless · Claude Code · Band Agentic Mesh · Band Control Plane`
 
 ### Paso 2 — Media
 
 | Campo | Archivo / enlace |
 |---|---|
-| Cover Image (16:9) | [`web/cover.png`](https://github.com/yanerox69/dark-factory/blob/main/web/cover.png) — 1280×720 |
-| Video Presentation | ⚠️ **No está en los repos** — añade tu enlace de YouTube (MP4 < 5 min, máx. 300 MB) |
-| Slide Presentation (PDF) | [`deck.pdf`](https://github.com/yanerox69/dark-factory/blob/main/deck.pdf) — 12 páginas, 1920×1080 |
+| Cover Image | La página publicada no muestra portada. En el repo `dark-factory` hay una: [`web/cover.png`](https://github.com/yanerox69/dark-factory/blob/main/web/cover.png) (1280×720) |
+| Video Presentation | **No se subió video** (la página no tiene ninguno) |
+| Slide Presentation (PDF) | [PDF publicado en lablab](https://storage.googleapis.com/lablab-static-eu/submissions/z6mh2dr7tqz6cer8l60q0jqv/i39x9a1pno73y9ry1lezwm9y/presentation/presentation_cspwydrwwpybz99lgc7zqs62.pdf) · copia en el repo: [`deck.pdf`](https://github.com/yanerox69/dark-factory/blob/main/deck.pdf) |
 
 ### Paso 3 — Application
 
-- **GitHub Repository:** https://github.com/yanerox69/dark-factory-pocketful (entrega) · https://github.com/yanerox69/dark-factory (diseño de la fábrica)
-- **Demo Platform:** Web
-- **Demo URL:** https://dark-factory-sepia.vercel.app
+- **GitHub Repository:** https://github.com/yanerox69/dark-factory-pocketful
+- **Demo URL:** https://github.com/yanerox69/dark-factory-pocketful (en la entrega, la demo apunta al mismo repo)
 - **Licencia:** MIT
 
-**Additional Information**
-```
-HOW TO READ THE REPOSITORY
-- FACTORY.md — the seats, the design choice and what it costs, what the factory caught and what it missed
-- mandates/ — one generic standing instruction per seat, each naming its harness and model
-- room.json — the BAND room log, downloaded whole (451 messages, 2026-09-27 20:05:39 → 23:55:03 UTC)
-- stage-1/ — the complete, buildable service: 147 of 147 shipped checks, claimed stage 1, isolated mode, against b4af9b5
-
-Human input in the judged run: six messages, all named in room.json and FACTORY.md.
-```
+> Material extra en el repo `dark-factory-pocketful`: `FACTORY.md` (diseño, coste y lo que
+> la fábrica detectó y no detectó), `mandates/` (instrucciones de cada agente), `room.json`
+> (registro completo de la sala BAND) y `stage-1/` (el servicio, 147/147 checks).
 
 ---
 
