@@ -10,13 +10,16 @@ El formulario de lablab tiene 3 pasos:
 2. **Media** — Cover Image, Video Presentation, Slide Presentation (PDF)
 3. **Application** — GitHub Repository, Demo Platform, Demo URL, Additional Information
 
-| # | Hackathon | Proyecto | Fechas | Estado |
-|---|---|---|---|---|
-| 1 | AssemblyAI Voice Agent Hackathon | RevenueFlow | 1–30 sep 2026 | ✅ Enviado el 10 sep |
-| 2 | IBM Bob 2.0 Hackathon | Issue → PR with IBM Bob 2.0 | 25–27 sep 2026 | ✅ Repo con video y slides |
-| 3 | WeAreDevelopers × BAND — Dark Factory (pista *pocketful*) | Dark Factory — pocketful | 26 sep – 5 oct 2026 | ✅ Build hecho (147/147) |
-| 4 | Vultr: Agent Rush Hackathon | Airlock | 3–8 nov 2026 | ⏳ Todavía no abre — textos preparados |
-| 5 | AMD Developer Hackathon: ACT III | DocuSwarm | 12–17 oct 2026 (online) · 17–18 oct (presencial) | ❓ Sin proyecto en ningún repo |
+Según tu página *My Teams* de lablab (lablab.ai/profile/my-teams), tienes **6 equipos**:
+
+| # | Hackathon | Equipo en lablab | Proyecto | Cierre | Estado |
+|---|---|---|---|---|---|
+| 1 | AssemblyAI — Voice Agent Hackathon | RevenueFlow | RevenueFlow | 30 sep 2026 | ✅ Pasado · enviado el 10 sep |
+| 2 | IBM Bob 2.0 hackathon | Yanero Rockstar | Issue → PR with IBM Bob 2.0 | 27 sep 2026 | ✅ Pasado |
+| 3 | WeAreDevelopers × BAND present: Dark Factory (hackathon edition) | Dark Factory | Dark Factory — pocketful | 6 oct 2026 | ✅ Pasado · 147/147 |
+| 4 | AMD Developer Hackathon: ACT III | Yanero Rockstar | DocuSwarm | 18 oct 2026 | 🔴 En curso · **cierra mañana** · proyecto solo en tu PC |
+| 5 | Vultr: Agent Rush Hackathon | Airlock | Airlock | 8 nov 2026 | ⏳ En curso · textos preparados |
+| 6 | AMD AI League | Yanero Rockstar | ❓ | 1 dic 2026 | ⏳ En curso · sin proyecto en ningún repo |
 
 > **Lo que falta y no está en ningún repo:** el enlace del video de Dark Factory y
 > el de Airlock. Si los tienes en YouTube, añádelos en su sección.
@@ -382,3 +385,11 @@ Blast radius — zero.
 | Slide Presentation (PDF) | _pendiente_ |
 | GitHub Repository | _pendiente_ |
 | Demo URL | _pendiente_ |
+
+---
+
+## 6. AMD AI League
+
+- **Equipo en lablab:** Yanero Rockstar · **Cierre:** 1 de diciembre de 2026
+- ⚠️ No hay ningún proyecto de este hackathon en tus repositorios de GitHub.
+  Todos los campos del formulario están pendientes.
