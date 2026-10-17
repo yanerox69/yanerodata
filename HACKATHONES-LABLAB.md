@@ -351,6 +351,7 @@ Blast radius — zero.
 ## 5. DocuSwarm — AMD Developer Hackathon: ACT III
 
 - **Página:** https://lablab.ai/ai-hackathons/amd-developer-hackathon-act-iii
+- **Página publicada de la entrega:** https://lablab.ai/ai-hackathons/amd-developer-hackathon-act-iii/yanero-rockstar/docuswarm-parallel-due-diligence-on-amd-gpus
 - **Equipo:** Yanero Rockstar (https://lablab.ai/ai-hackathons/amd-developer-hackathon-act-iii/yanero-rockstar)
 - **Enviado:** 12 oct 2026 · actualizado el 15 y el 16 oct (se añadieron los *Event Tracks*)
 - **Código:** https://github.com/yanerox69/docuswarm (rama `main`)
@@ -382,7 +383,7 @@ The backend is provider-agnostic by design: it talks to any OpenAI-compatible en
 
 Tech stack: FastAPI + asyncio backend, React/Vite dashboard streaming over Server-Sent Events, vLLM serving on AMD Instinct GPUs (ROCm), openpyxl for Excel export.
 
-Repo: github.com/yanerox69/docuswarm
+Repo: https://github.com/yanerox69/docuswarm
 ```
 
 **Participation Mode:** Online
@@ -391,8 +392,8 @@ Repo: github.com/yanerox69/docuswarm
 
 **Event Tracks:** `Evolus Business Agents on AMD · Intelligent Industry`
 
-**Technologies:** `AMD Developer Cloud · AMD ROCm · Qwen3 · vLLM · FastAPI · React · Python · Claude Code`
-*(se quitaron Nvidia, Assistants API y Anthropic Claude porque el proyecto no los usa)*
+**Technologies** (publicadas): `AMD Developer Cloud · AMD ROCm · Claude Code · Qwen3`
+*(vLLM, FastAPI, React y Python no estaban en la lista del formulario; se quitaron Nvidia, Assistants API y Anthropic Claude porque el proyecto no los usa)*
 
 ### Paso 2 — Media
 
@@ -400,14 +401,14 @@ Repo: github.com/yanerox69/docuswarm
 |---|---|
 | Cover Image (16:9) | `cover_image.png` — 1920×1080, captura del dashboard |
 | Video Presentation | `docuswarm_final5.mp4` — demo narrada con datos reales de rendimiento |
-| Slide Presentation (PDF) | `docuswarm_deck.pdf` — 9 slides: problema, solución, captura, rendimiento en GPU AMD, arquitectura, encaje con el hackathon, stack y cierre |
+| Slide Presentation (PDF) | [PDF publicado en lablab](https://storage.googleapis.com/lablab-static-eu/submissions/ns4bgcyttkb6hbt4ox02n11j/tby0vdux0qmske2o7msgp22v/presentation/presentation_c4r6mcok0wtr0p4ovndcbhgq.pdf) · `docuswarm_deck.pdf` — 9 slides: problema, solución, captura, rendimiento en GPU AMD, arquitectura, encaje con el hackathon, stack y cierre |
 
 > Estos tres archivos los subiste desde tu PC; no están en ningún repo.
 
 ### Paso 3 — Application
 
 - **GitHub Repository:** https://github.com/yanerox69/docuswarm
-  ⚠️ En la entrega enviada figura `github.com/yanerox69/yanerodata`, cuya rama principal muestra otro proyecto. Cámbialo por este enlace (en el campo del repo y en la última línea de la descripción larga).
+  ✅ Actualizado en lablab el 17 oct (campo del repo y última línea de la descripción larga).
 - **Demo Platform:** Other
 - **Demo URL:** http://129.212.188.131:3000 (la instancia MI300X ya está apagada)
 
