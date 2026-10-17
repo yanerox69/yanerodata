@@ -400,7 +400,7 @@ Repo: https://github.com/yanerox69/docuswarm
 | Campo | Archivo |
 |---|---|
 | Cover Image (16:9) | `cover_image.png` — 1920×1080, captura del dashboard |
-| Video Presentation | `docuswarm_final5.mp4` — demo narrada con datos reales de rendimiento |
+| Video Presentation | `docuswarm_final5.mp4` — demo narrada con datos reales de rendimiento ✅ visible en la página publicada (comprobado el 17 oct) |
 | Slide Presentation (PDF) | [PDF publicado en lablab](https://storage.googleapis.com/lablab-static-eu/submissions/ns4bgcyttkb6hbt4ox02n11j/tby0vdux0qmske2o7msgp22v/presentation/presentation_c4r6mcok0wtr0p4ovndcbhgq.pdf) · `docuswarm_deck.pdf` — 9 slides: problema, solución, captura, rendimiento en GPU AMD, arquitectura, encaje con el hackathon, stack y cierre |
 
 > Estos tres archivos los subiste desde tu PC; no están en ningún repo.
