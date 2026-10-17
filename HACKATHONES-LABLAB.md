@@ -353,7 +353,7 @@ Blast radius — zero.
 - **Página:** https://lablab.ai/ai-hackathons/amd-developer-hackathon-act-iii
 - **Equipo:** Yanero Rockstar (https://lablab.ai/ai-hackathons/amd-developer-hackathon-act-iii/yanero-rockstar)
 - **Enviado:** 12 oct 2026 · actualizado el 15 y el 16 oct (se añadieron los *Event Tracks*)
-- **Código:** rama `claude/amd-hackathon-act-iii-5b0pcq` de este repo (`yanerodata`)
+- **Código:** https://github.com/yanerox69/docuswarm- (rama `main`)
 - Probado en vivo en una **AMD Instinct MI300X** (AMD Developer Cloud) con **vLLM + Qwen3-8B**
 
 ### Paso 1 — Basic Information
@@ -382,7 +382,7 @@ The backend is provider-agnostic by design: it talks to any OpenAI-compatible en
 
 Tech stack: FastAPI + asyncio backend, React/Vite dashboard streaming over Server-Sent Events, vLLM serving on AMD Instinct GPUs (ROCm), openpyxl for Excel export.
 
-Repo: github.com/yanerox69/yanerodata
+Repo: github.com/yanerox69/docuswarm-
 ```
 
 **Participation Mode:** Online
@@ -406,7 +406,8 @@ Repo: github.com/yanerox69/yanerodata
 
 ### Paso 3 — Application
 
-- **GitHub Repository:** https://github.com/yanerox69/yanerodata (código en la rama `claude/amd-hackathon-act-iii-5b0pcq`)
+- **GitHub Repository:** https://github.com/yanerox69/docuswarm-
+  ⚠️ En la entrega enviada figura `github.com/yanerox69/yanerodata`, cuya rama principal muestra otro proyecto. Cámbialo por este enlace (en el campo del repo y en la última línea de la descripción larga).
 - **Demo Platform:** Other
 - **Demo URL:** http://129.212.188.131:3000 (la instancia MI300X ya está apagada)
 
@@ -415,9 +416,6 @@ Repo: github.com/yanerox69/yanerodata
 Note: the live demo was running on a real AMD Instinct MI300X GPU Droplet (AMD Developer Cloud), fully functional — all results shown in the video and slide deck were captured live from that instance (6 documents processed in 1.5s at 1,653.9 tokens/sec). The droplet was powered off after the AMD Developer Cloud trial credit was exhausted, so the demo URL above may no longer respond. The video presentation shows the application running live end-to-end on the real GPU as proof.
 ```
 
-> ⚠️ El README de la rama todavía dice que no se pudo conectar a una GPU AMD real
-> (sección *Status*). Contradice lo que dice la entrega: conviene actualizarlo
-> antes de que el jurado lo lea.
 
 ---|---|
 | Submission Title | _pendiente_ |
