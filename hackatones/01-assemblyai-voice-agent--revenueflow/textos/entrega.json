@@ -1,0 +1,111 @@
+{
+  "id": "kyq9zp77m9g2am8reerxi21o",
+  "title": "RevenueFlow: WhatsApp voice receptionist",
+  "slug": "revenueflow-whatsapp-voice-receptionist",
+  "description": "In Latin America, WhatsApp is not a channel — it is the channel. Customers message small businesses there, usually with a voice note. But the person who would answer is the person doing the work: a dentist with their hands in someone's mouth is not replying to WhatsApp. Messages pile up, and the customer books somewhere else.\n\nRevenueFlow answers instead. It transcribes the voice note with AssemblyAI Universal-3.5 Pro, extracts intent through the AssemblyAI LLM Gateway, resolves \"el jueves en la tarde\" into a real timestamp in the business's timezone, checks actual availability, books the appointment, and replies — in about seven seconds.\n\nLanguage is detected, not assumed. Detection runs with expected_languages, a country fallback and code_switching for mixed voice notes, and on_low_language_confidence set to fallback, so a noisy note degrades to the country's language instead of failing outright. It answers in Spanish, Portuguese or English — and still books for someone writing in Russian or Mandarin.\n\nOne rule shapes everything: the model decides what the customer wants; the system decides what is allowed. The model cannot invent a service (catalog IDs only), a date (it returns a weekday symbol and the system computes the date), or availability. Replies are hand-written templates, because they carry exact dates and times, and a hallucination there is a lost appointment in real life.\n\nIt holds the conversation too. Four words — \"mejor para el viernes\" — reschedule the right appointment to Friday at the same hour, without repeating the service or the date. Complaints, money and medical questions stop and go to a human.\n\nRunning on a real WhatsApp number, in two countries, with row-level tenant isolation and money stored as integer minor units with its FX rate. 177 tests. Source public under MIT.",
+  "shortDescription": "A WhatsApp voice-note receptionist for Latin American small businesses. A customer sends a voice message in their own language; about seven seconds later the appointment is booked and confirmed. No forms, no menus, nobody waiting on hold",
+  "imageLink": "https://storage.googleapis.com/lablab-static-eu/submissions/b6wkg1t1zv6hiu22b6rbu59b/kyq9zp77m9g2am8reerxi21o/image/image_e9rsaj1upmaz3omkgk318xlb.jpg",
+  "videoLink": "https://storage.googleapis.com/lablab-video-submissions/submissions/b6wkg1t1zv6hiu22b6rbu59b/kyq9zp77m9g2am8reerxi21o/video/video_e7astxs2ku8nqxc0alcy5628.mp4",
+  "isDraft": false,
+  "createdAt": "$D2026-09-10T14:41:27.532Z",
+  "eventId": "u0u0y7pzus7il97l0fqqpazl",
+  "position": null,
+  "eventPosition": "OTHER",
+  "demoPlatform": "VERCEL",
+  "repoLink": "https://github.com/yanerox69/revenueflow-ai",
+  "demoUrl": "https://revenueflow-ai-yanero.vercel.app",
+  "presentationLink": "https://storage.googleapis.com/lablab-static-eu/submissions/b6wkg1t1zv6hiu22b6rbu59b/kyq9zp77m9g2am8reerxi21o/presentation/presentation_ghyw9v1mbjio8r9ml418ac4d.pdf",
+  "breaksRules": false,
+  "xVideoUrl": null,
+  "agentProfileLink": null,
+  "customFieldData": null,
+  "eventTracks": [],
+  "techIn": [
+    {
+      "tech": {
+        "name": "Assistants API",
+        "slug": "assistants-api",
+        "provider": {
+          "name": "OpenAI",
+          "slug": "openai"
+        }
+      }
+    },
+    {
+      "tech": {
+        "name": "Vercel",
+        "slug": "vercel",
+        "provider": null
+      }
+    },
+    {
+      "tech": {
+        "name": "Claude Code",
+        "slug": "claude-code",
+        "provider": {
+          "name": "Anthropic",
+          "slug": "anthropic"
+        }
+      }
+    }
+  ],
+  "categories": [
+    {
+      "submissionCategory": {
+        "name": "Voice Assistant",
+        "slug": "voice-assistant"
+      }
+    },
+    {
+      "submissionCategory": {
+        "name": "Productivity",
+        "slug": "productivity"
+      }
+    },
+    {
+      "submissionCategory": {
+        "name": "Business",
+        "slug": "business"
+      }
+    },
+    {
+      "submissionCategory": {
+        "name": "Language and Translation",
+        "slug": "language-and-translation"
+      }
+    }
+  ],
+  "_count": {
+    "likes": 2
+  },
+  "team": {
+    "voiceChannelId": null,
+    "name": "RevenueFlow",
+    "slug": "revenueflow",
+    "admin": {
+      "userId": "cmtgey4fi000ps601oa3km4fn"
+    },
+    "participants": [
+      {
+        "userId": "cmtgey4fi000ps601oa3km4fn",
+        "user": {
+          "profile": {
+            "firstName": "Jose",
+            "lastName": "Miranda",
+            "userName": "yanero_rockstar274",
+            "role": "Profesional en Tecnologia",
+            "picture": "https://avatars.githubusercontent.com/u/86120527?v=4"
+          }
+        }
+      }
+    ]
+  },
+  "event": {
+    "slug": "assemblyai-voice-agent-hackathon",
+    "name": "AssemblyAI - Voice Agent Hackathon",
+    "reviewsVisibleToTeams": false,
+    "showWinners": false,
+    "submissionFormConfig": null
+  },
+  "likes": []
+}

@@ -1,0 +1,125 @@
+{
+  "id": "i39x9a1pno73y9ry1lezwm9y",
+  "title": "Dark Factory — the band that refuses its own work",
+  "slug": "dark-factory-the-band-that-refuses-its-own-work",
+  "description": "Dark Factory is a software factory built in BAND Desktop: three coding-agent seats in one room, coordinating through @mention routing, building a wallet and payments service against a written specification.\n\nTHE DESIGN DECISION\n\nGrading here is literal and automated: exact field names, exact status codes. One mistyped attribute scores nothing. So the advantage is not implementing faster; it is refusing to hand off anything that does not conform. Two of the three seats are forbidden from writing production code: a coordinator who plans and holds the gate, an implementer, and a reviewer who checks conformance against the spec text, never against the implementer's report. All three run the same harness and model — OpenCode on Featherless, GLM-5.2 — so nothing comes from giving a role a better model. The only difference is the mandate file, loaded as that seat's system prompt.\n\nWHAT IT CAUGHT\n\nBefore any code existed, the reviewer turned the specification into a 158-item checklist, derived from the spec text only, never from the shipped tests, which are a sample that would encode its own blind spots as the requirement. Then one seat corrected another: the coordinator ruled that an empty request body means an empty object; the reviewer confirmed it and rejected it as incomplete, because the stored body must be that empty object too, or a legitimate retry reads as a key reuse — a money bug, caught before a line was written.\n\nWHAT IT MISSED\n\nWe stopped the reviewer partway to conserve budget. Two defects shipped past the seats, one of them making login impossible after an import. The owner caught both at the gate.\n\nMEASURED\n\n3h49m, 451 messages, 11,743,469 tokens, $11.70 of a $25 credit, 147 of 147 shipped checks. Input outweighed output 54 to 1: a seat re-reads the whole room every turn, so a factory costs what its own history costs.\n\nTHE DELETE TEST\n\nTake BAND out and this factory does not degrade. It disappears — the rejection has no channel.",
+  "shortDescription": "Three coding agents in one BAND room build a payments API. Two of the three cannot write code — their job is to refuse handoffs that do not conform.",
+  "imageLink": "https://storage.googleapis.com/lablab-static-eu/submissions/z6mh2dr7tqz6cer8l60q0jqv/i39x9a1pno73y9ry1lezwm9y/image/image_rygwm5uj6kggi7kb4rekrep3.jpg",
+  "videoLink": "https://storage.googleapis.com/lablab-video-submissions/submissions/z6mh2dr7tqz6cer8l60q0jqv/i39x9a1pno73y9ry1lezwm9y/video/video_j6jkfa4jc8aqifty8repr6d5.mp4",
+  "isDraft": false,
+  "createdAt": "$D2026-09-28T15:31:31.367Z",
+  "eventId": "p1nwffofp06ha9zm451slnya",
+  "position": null,
+  "eventPosition": "OTHER",
+  "demoPlatform": "OTHER",
+  "repoLink": "https://github.com/yanerox69/dark-factory-pocketful",
+  "demoUrl": "https://github.com/yanerox69/dark-factory-pocketful",
+  "presentationLink": "https://storage.googleapis.com/lablab-static-eu/submissions/z6mh2dr7tqz6cer8l60q0jqv/i39x9a1pno73y9ry1lezwm9y/presentation/presentation_cspwydrwwpybz99lgc7zqs62.pdf",
+  "breaksRules": false,
+  "xVideoUrl": null,
+  "agentProfileLink": null,
+  "customFieldData": null,
+  "eventTracks": [
+    {
+      "track": {
+        "name": "Pocketful"
+      }
+    }
+  ],
+  "techIn": [
+    {
+      "tech": {
+        "name": "Band Intergrations",
+        "slug": "band-intergrations",
+        "provider": {
+          "name": "Band AI",
+          "slug": "band-ai"
+        }
+      }
+    },
+    {
+      "tech": {
+        "name": "Featherless",
+        "slug": "featherless",
+        "provider": null
+      }
+    },
+    {
+      "tech": {
+        "name": "Claude Code",
+        "slug": "claude-code",
+        "provider": {
+          "name": "Anthropic",
+          "slug": "anthropic"
+        }
+      }
+    },
+    {
+      "tech": {
+        "name": "Band Agentic Mesh",
+        "slug": "band-agentic-mesh",
+        "provider": {
+          "name": "Band AI",
+          "slug": "band-ai"
+        }
+      }
+    },
+    {
+      "tech": {
+        "name": "Band Control Plane",
+        "slug": "band-control-plane",
+        "provider": {
+          "name": "Band AI",
+          "slug": "band-ai"
+        }
+      }
+    }
+  ],
+  "categories": [
+    {
+      "submissionCategory": {
+        "name": "Developer Tools",
+        "slug": "developer-tools"
+      }
+    },
+    {
+      "submissionCategory": {
+        "name": "Open-ended Agent Protocol",
+        "slug": "open-ended-agent-protocol"
+      }
+    }
+  ],
+  "_count": {
+    "likes": 6
+  },
+  "team": {
+    "voiceChannelId": null,
+    "name": "Dark Factory",
+    "slug": "revenueflow",
+    "admin": {
+      "userId": "cmtgey4fi000ps601oa3km4fn"
+    },
+    "participants": [
+      {
+        "userId": "cmtgey4fi000ps601oa3km4fn",
+        "user": {
+          "profile": {
+            "firstName": "Jose",
+            "lastName": "Miranda",
+            "userName": "yanero_rockstar274",
+            "role": "Profesional en Tecnologia",
+            "picture": "https://avatars.githubusercontent.com/u/86120527?v=4"
+          }
+        }
+      }
+    ]
+  },
+  "event": {
+    "slug": "wearedevelopers-hackathon",
+    "name": "WeAreDevelopers x BAND present: Dark Factory (hackathon edition)",
+    "reviewsVisibleToTeams": false,
+    "showWinners": false,
+    "submissionFormConfig": null
+  },
+  "likes": []
+}

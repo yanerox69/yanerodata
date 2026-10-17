@@ -1,0 +1,131 @@
+{
+  "id": "tby0vdux0qmske2o7msgp22v",
+  "title": "DocuSwarm: Parallel Due-Diligence on AMD GPUs",
+  "slug": "docuswarm-parallel-due-diligence-on-amd-gpus",
+  "description": "DocuSwarm is a parallel document due-diligence agent swarm built for the AMD Developer Hackathon: ACT III — \"AI agents and high-performance AI applications on AMD GPUs in the cloud.\"\n\nReviewing contracts, NDAs, and reports for risky clauses is slow, manual work done one document at a time. DocuSwarm turns it into a single upload: drop in up to 20 documents and a swarm of async agents analyzes them concurrently against the same LLM endpoint, surfacing risk level, red flags, key dates, and parties per document, with a consolidated Excel/JSON report.\n\nThis isn't a chatbot demo — it's built to make AMD GPU throughput visible. Every document gets its own async task bounded by a semaphore; all of them hit the same vLLM server, which is exactly the continuous-batching workload AMD Instinct GPUs + ROCm + vLLM are built for. A live dashboard streams completed/total, tokens/sec, elapsed time, and active concurrency in real time.\n\nTested end-to-end on an AMD Instinct MI300X (AMD Developer Cloud) serving Qwen3-8B via vLLM: 6 documents processed concurrently in 1.5 seconds at 1,653.9 tokens/sec — real GPU throughput, not a simulation. Each result reflects genuine LLM judgment (e.g., a contract flagged MEDIUM risk with specific red flags like termination penalties and liquidated damages), not keyword matching.\n\nThe backend is provider-agnostic by design: it talks to any OpenAI-compatible endpoint, so moving from a laptop to an AMD GPU instance is a one-line config change.\n\nTech stack: FastAPI + asyncio backend, React/Vite dashboard streaming over Server-Sent Events, vLLM serving on AMD Instinct GPUs (ROCm), openpyxl for Excel export.\n\nRepo: https://github.com/yanerox69/docuswarm",
+  "shortDescription": "Upload contracts and a swarm of async agents analyzes them in parallel on AMD Instinct GPUs via vLLM — surfacing risk level, red flags, and key dates, with a live GPU-throughput dashboard.",
+  "imageLink": "https://storage.googleapis.com/lablab-static-eu/submissions/ns4bgcyttkb6hbt4ox02n11j/tby0vdux0qmske2o7msgp22v/image/image_ep62696r0c65peb737yb6p5p.jpg",
+  "videoLink": "https://storage.googleapis.com/lablab-video-submissions/submissions/ns4bgcyttkb6hbt4ox02n11j/tby0vdux0qmske2o7msgp22v/video/video_qn4cf263iwf1rk8sxeplgo2k.mp4",
+  "isDraft": false,
+  "createdAt": "$D2026-10-12T15:29:19.458Z",
+  "eventId": "c67zv8igdssavcljwmij0wwh",
+  "position": null,
+  "eventPosition": "OTHER",
+  "demoPlatform": "OTHER",
+  "repoLink": "https://github.com/yanerox69/docuswarm",
+  "demoUrl": "http://129.212.188.131:3000",
+  "presentationLink": "https://storage.googleapis.com/lablab-static-eu/submissions/ns4bgcyttkb6hbt4ox02n11j/tby0vdux0qmske2o7msgp22v/presentation/presentation_c4r6mcok0wtr0p4ovndcbhgq.pdf",
+  "breaksRules": false,
+  "xVideoUrl": null,
+  "agentProfileLink": null,
+  "customFieldData": null,
+  "eventTracks": [
+    {
+      "track": {
+        "name": "Evolus Business Agents on AMD"
+      }
+    },
+    {
+      "track": {
+        "name": "Intelligent Industry"
+      }
+    }
+  ],
+  "techIn": [
+    {
+      "tech": {
+        "name": "AMD Developer Cloud",
+        "slug": "amd-developer-cloud",
+        "provider": {
+          "name": "amd",
+          "slug": "amd"
+        }
+      }
+    },
+    {
+      "tech": {
+        "name": "AMD ROCm",
+        "slug": "amd-rocm",
+        "provider": {
+          "name": "amd",
+          "slug": "amd"
+        }
+      }
+    },
+    {
+      "tech": {
+        "name": "Claude Code",
+        "slug": "claude-code",
+        "provider": {
+          "name": "Anthropic",
+          "slug": "anthropic"
+        }
+      }
+    },
+    {
+      "tech": {
+        "name": "Qwen3",
+        "slug": "qwen3",
+        "provider": {
+          "name": "Qwen",
+          "slug": "qwen"
+        }
+      }
+    }
+  ],
+  "categories": [
+    {
+      "submissionCategory": {
+        "name": "Developer Tools",
+        "slug": "developer-tools"
+      }
+    },
+    {
+      "submissionCategory": {
+        "name": "Documents",
+        "slug": "documents"
+      }
+    },
+    {
+      "submissionCategory": {
+        "name": "Legal",
+        "slug": "legal"
+      }
+    }
+  ],
+  "_count": {
+    "likes": 4
+  },
+  "team": {
+    "voiceChannelId": null,
+    "name": "Yanero Rockstar",
+    "slug": "yanero-rockstar",
+    "admin": {
+      "userId": "cmtgey4fi000ps601oa3km4fn"
+    },
+    "participants": [
+      {
+        "userId": "cmtgey4fi000ps601oa3km4fn",
+        "user": {
+          "profile": {
+            "firstName": "Jose",
+            "lastName": "Miranda",
+            "userName": "yanero_rockstar274",
+            "role": "Profesional en Tecnologia",
+            "picture": "https://avatars.githubusercontent.com/u/86120527?v=4"
+          }
+        }
+      }
+    ]
+  },
+  "event": {
+    "slug": "amd-developer-hackathon-act-iii",
+    "name": "AMD Developer Hackathon: ACT III",
+    "reviewsVisibleToTeams": false,
+    "showWinners": false,
+    "submissionFormConfig": {
+      "customFields": []
+    }
+  },
+  "likes": []
+}
