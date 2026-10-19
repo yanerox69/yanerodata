@@ -1,5 +1,0 @@
-{
-  "name": "DocuSwarm",
-  "description": "A parallel document due-diligence agent swarm: upload contracts/reports and watch agents analyze them concurrently against an LLM served via vLLM on AMD Instinct GPUs (ROCm), with a live throughput dashboard and Excel/JSON export.",
-  "requestFramePermissions": []
-}
